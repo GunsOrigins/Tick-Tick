@@ -3,12 +3,15 @@ class Timer {
     minutesCount : number;
     secondsCount : number;
     toggleState : boolean;
+    Constructor() {
+        this.minutesCount = 0;
+        this.secondsCount = 0;
+        this.toggleState = false;
+    }
 }
 
 const tmr = new Timer();
-tmr.minutesCount = 0;
-tmr.secondsCount = 0;
-tmr.toggleState = false;
+
 
 /** Clear the timer input */
 function clearInput() {
