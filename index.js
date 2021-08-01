@@ -43,7 +43,7 @@ function ToggleTimer(state, data) {
         tmr.toggleState = false;
         displayToggle();
     }
-    else if (state === true && data) {
+    else if (state === true) {
         tmr.toggleState = true;
         displayToggle();
         return data;
