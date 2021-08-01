@@ -19,11 +19,14 @@ function AlarmUser() {
     window.location.href = "https://%79%6F%75%74%75%2E%62%65/oHg5SJYRHA0";
 }
 //add interactivity to timerToggle
-/** Start/stop the timer */
+/** Start/pause the timer */
 function startstopTimer() {
     var processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
-    if (processedTime != 0) {
+    if (processedTime !== 0 && tmr.toggleState === false) {
         ToggleTimer(true, processedTime);
+    }
+    else if (processedTime !== 0) {
+        ToggleTimer(false);
     }
     else {
         ToggleTimer(false);
@@ -31,7 +34,7 @@ function startstopTimer() {
 }
 /**
  * Toggle the timer
- * @param {boolean} state - The state you wanna toggle! true = start the timer, false = pause the timer
+ * @param {boolean=} state - The state you wanna toggle! true = start the timer, false = pause the timer
  * @param {number=} data - The data you wanna pass with
  *
  */
@@ -40,10 +43,14 @@ function ToggleTimer(state, data) {
         tmr.toggleState = false;
         displayToggle();
     }
-    else if (state === true) {
+    else if (state === true && data) {
         tmr.toggleState = true;
         displayToggle();
-        return console.log(data);
+        return data;
+    }
+    else {
+        !tmr.toggleState;
+        displayToggle();
     }
 }
 //extract to a function because yes

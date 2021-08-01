@@ -1,8 +1,8 @@
 //put timer things here
 class Timer {
-    minutesCount : number;
-    secondsCount : number;
-    toggleState : boolean;
+    minutesCount: number;
+    secondsCount: number;
+    toggleState: boolean;
     constructor() {
         this.minutesCount = 0;
         this.secondsCount = 0;
@@ -11,7 +11,6 @@ class Timer {
 }
 
 const tmr = new Timer();
-
 
 /** Clear the timer input */
 function clearInput() {
@@ -24,11 +23,14 @@ function AlarmUser() {
     window.location.href = "https://%79%6F%75%74%75%2E%62%65/oHg5SJYRHA0";
 }
 //add interactivity to timerToggle
-/** Start/stop the timer */
+/** Start/pause the timer */
 function startstopTimer() {
-    let processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
-    if (processedTime != 0) {
+    const processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
+    if (processedTime !== 0 && tmr.toggleState === false) {
         ToggleTimer(true, processedTime);
+    }
+    else if (processedTime !== 0) {
+        ToggleTimer(false);
     }
     else {
         ToggleTimer(false);
@@ -36,20 +38,24 @@ function startstopTimer() {
 }
 /**
  * Toggle the timer
- * @param {boolean} state - The state you wanna toggle! true = start the timer, false = pause the timer
+ * @param {boolean=} state - The state you wanna toggle! true = start the timer, false = pause the timer
  * @param {number=} data - The data you wanna pass with
  * 
  */
-function ToggleTimer(state: boolean, data?: number) {
-        if (state === false) {
-            tmr.toggleState = false;
-            displayToggle();
-        }
-        else if (state === true) {
-            tmr.toggleState = true;
-            displayToggle();
-            return console.log(data);
-        }
+function ToggleTimer(state?: boolean, data?: number) {
+    if (state === false) {
+        tmr.toggleState = false;
+        displayToggle();
+    }
+    else if (state === true && data) {
+        tmr.toggleState = true;
+        displayToggle();
+        return data;
+    }
+    else {
+        !tmr.toggleState;
+        displayToggle();
+    }
 }
 //extract to a function because yes
 function displayToggle() {
@@ -57,4 +63,4 @@ function displayToggle() {
 }
 //ok let's do some graphics stuff
 /** ตัวแปร lololol */
-var timerView = document.getElementById("timer");
+const timerView = document.getElementById("timer");
