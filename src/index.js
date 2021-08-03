@@ -46,7 +46,7 @@ function ToggleTimer(state, data) {
     else if (state === true) {
         tmr.toggleState = true;
         displayToggle();
-        return data;
+        return updateTimerView(data);
     }
     else {
         !tmr.toggleState;
@@ -60,3 +60,14 @@ function displayToggle() {
 //ok let's do some graphics stuff
 /** ตัวแปร lololol */
 var timerView = document.getElementById("timer");
+function updateTimerView(time) {
+    var displayMinutes = Math.floor(time / 60).toString();
+    var displaySeconds = (time % 60).toString();
+    if (+displayMinutes < 10) {
+        displayMinutes = '0' + displayMinutes;
+    }
+    if (+displaySeconds < 10) {
+        displaySeconds = '0' + displaySeconds;
+    }
+    return displayMinutes + "Min" + " : " + displaySeconds + "Sec";
+}
