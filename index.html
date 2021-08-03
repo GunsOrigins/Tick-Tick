@@ -14,8 +14,8 @@
         <div id="view">
             <div id="timer">00 Min : 00 Sec</div>
             <div class="buttons">
-                <button id="MinutesInput" onclick="ToggleTimer(false);++tmr.minutesCount">Mins</button>
-                <button id="SecondsInput" onclick="ToggleTimer(false);++tmr.secondsCount">Secs</button>
+                <button id="MinutesInput" onclick="ToggleTimer(false);++tmr.minutesCount;updateTimerView((tmr.minutesCount * 60) + tmr.secondsCount)">Mins</button>
+                <button id="SecondsInput" onclick="ToggleTimer(false);++tmr.secondsCount;updateTimerView((tmr.minutesCount * 60) + tmr.secondsCount)">Secs</button>
                 <button id="clear" onclick="clearInput()">Clear</button>
                 <button id="ToggleTimer" onclick="startstopTimer()">Start</button>
             </div>

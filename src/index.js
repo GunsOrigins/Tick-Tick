@@ -12,7 +12,9 @@ var tmr = new Timer();
 function clearInput() {
     tmr.minutesCount = 0;
     tmr.secondsCount = 0;
-    ToggleTimer(false);
+    tmr.toggleState = false;
+    displayToggle();
+    updateTimerView(0);
 }
 /** when the time is up you need to alert the user right? Rickroll them! */
 function AlarmUser() {
@@ -26,10 +28,12 @@ function startstopTimer() {
         ToggleTimer(true, processedTime);
     }
     else if (processedTime !== 0) {
-        ToggleTimer(false);
+        ToggleTimer(false, processedTime);
+        clearInterval();
     }
     else {
-        ToggleTimer(false);
+        ToggleTimer(false, processedTime);
+        clearInterval();
     }
 }
 /**
@@ -45,8 +49,10 @@ function ToggleTimer(state, data) {
     }
     else if (state === true) {
         tmr.toggleState = true;
+        timeLeft = data;
         displayToggle();
-        return updateTimerView(data);
+        updateTimerView(data);
+        literallyStartTimer(data);
     }
     else {
         !tmr.toggleState;
@@ -69,5 +75,15 @@ function updateTimerView(time) {
     if (+displaySeconds < 10) {
         displaySeconds = '0' + displaySeconds;
     }
-    return displayMinutes + "Min" + " : " + displaySeconds + "Sec";
+    timerView.innerHTML = displayMinutes + "Min" + " : " + displaySeconds + "Sec";
+}
+//the core thing goes here
+//var for timerInterval pls don't exploit the code
+var timerInterval = null;
+var timePassed = 0;
+var timeLeft;
+function literallyStartTimer(time) {
+    timerInterval = setInterval(function () {
+        //tomorrow
+    }, 1000);
 }
