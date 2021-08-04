@@ -10,6 +10,7 @@ var Timer = /** @class */ (function () {
 var tmr = new Timer();
 /** Clear the timer input */
 function clearInput() {
+    clearInterval(timerInterval);
     tmr.minutesCount = 0;
     tmr.secondsCount = 0;
     tmr.toggleState = false;
@@ -18,22 +19,22 @@ function clearInput() {
 }
 /** when the time is up you need to alert the user right? Rickroll them! */
 function AlarmUser() {
-    window.location.href = "https://%79%6F%75%74%75%2E%62%65/oHg5SJYRHA0";
+    window.location.href = "https://bit.ly/3rTz1Jd";
 }
 //add interactivity to timerToggle
-/** Start/pause the timer */
+/** Start/pause/stop the timer */
 function startstopTimer() {
     var processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
     if (processedTime !== 0 && tmr.toggleState === false) {
         ToggleTimer(true, processedTime);
     }
     else if (processedTime !== 0) {
-        ToggleTimer(false, processedTime);
-        clearInterval();
+        clearInterval(timerInterval);
+        ToggleTimer(false);
     }
     else {
-        ToggleTimer(false, processedTime);
-        clearInterval();
+        clearInterval(timerInterval);
+        ToggleTimer(false);
     }
 }
 /**
@@ -44,6 +45,7 @@ function startstopTimer() {
  */
 function ToggleTimer(state, data) {
     if (state === false) {
+        clearInterval(timerInterval);
         tmr.toggleState = false;
         displayToggle();
     }
@@ -55,6 +57,7 @@ function ToggleTimer(state, data) {
         literallyStartTimer(data);
     }
     else {
+        clearInterval(timerInterval);
         !tmr.toggleState;
         displayToggle();
     }
@@ -84,6 +87,12 @@ var timePassed = 0;
 var timeLeft;
 function literallyStartTimer(time) {
     timerInterval = setInterval(function () {
-        //tomorrow
+        timePassed = timePassed += 1;
+        timeLeft = time - timePassed;
+        updateTimerView(timeLeft);
+        if (timeLeft == 0) {
+            startstopTimer();
+            AlarmUser();
+        }
     }, 1000);
 }
