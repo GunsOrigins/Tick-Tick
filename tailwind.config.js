@@ -1,8 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: ['index.html', 'css/styles.css'],
-  darkMode: false, // or 'media' or 'class'
+  purge: ['index.html', 'css/styles.css', 'tailwind.config.js'],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -11,7 +11,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      ringColor: ['hover', 'active'],
+      display: ['hover', 'active', 'dark'],
+    },
   },
   plugins: [],
 }
