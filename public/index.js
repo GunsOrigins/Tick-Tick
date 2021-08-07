@@ -35,7 +35,7 @@ function startstopTimer() {
     }
     else if (processedTime !== 0) {
         clearInterval(timerInterval);
-        ToggleTimer(false);
+        ToggleTimer(false, timeLeft);
     }
     else {
         clearInterval(timerInterval);
@@ -55,6 +55,7 @@ function ToggleTimer(state, data) {
         displayToggle();
     }
     else if (state === true) {
+        clearInterval(timerInterval);
         tmr.toggleState = true;
         timeLeft = data;
         displayToggle();
