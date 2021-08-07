@@ -26,7 +26,12 @@ function AlarmUser() {
 function startstopTimer() {
     var processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
     if (processedTime !== 0 && tmr.toggleState === false) {
-        ToggleTimer(true, processedTime);
+        if (timeLeft < processedTime) {
+            ToggleTimer(true, timeLeft);
+        }
+        else {
+            ToggleTimer(true, processedTime);
+        }
     }
     else if (processedTime !== 0) {
         clearInterval(timerInterval);

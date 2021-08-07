@@ -30,7 +30,12 @@ function AlarmUser() {
 function startstopTimer() {
     const processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
     if (processedTime !== 0 && tmr.toggleState === false) {
-        ToggleTimer(true, processedTime);
+        if (timeLeft < processedTime) {
+            ToggleTimer(true, timeLeft);
+        }
+        else {
+            ToggleTimer(true, processedTime);
+        }
     }
     else if (processedTime !== 0) {
         clearInterval(timerInterval);
@@ -91,7 +96,7 @@ function updateTimerView(time: number) {
 var timerInterval = null;
 var timePassed = 0
 var timeLeft: number;
-function literallyStartTimer(time: number, ) {
+function literallyStartTimer(time: number,) {
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = time - timePassed;
