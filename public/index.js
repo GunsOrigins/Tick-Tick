@@ -24,6 +24,7 @@ function AlarmUser() {
 //add interactivity to timerToggle
 /** Start/pause/stop the timer */
 function startstopTimer() {
+    clearInterval(timerInterval);
     var processedTime = tmr.minutesCount * 60 + tmr.secondsCount;
     if (processedTime !== 0 && tmr.toggleState === false) {
         if (timeLeft < processedTime) {
