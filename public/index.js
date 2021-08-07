@@ -97,6 +97,10 @@ function literallyStartTimer(time) {
         timePassed = timePassed += 1;
         timeLeft = time - timePassed;
         updateTimerView(timeLeft);
+        if (tmr.toggleState === false) {
+            clearInterval(timerInterval);
+            startstopTimer();
+        }
         if (timeLeft == 0) {
             startstopTimer();
             AlarmUser();
